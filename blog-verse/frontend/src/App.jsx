@@ -1,8 +1,11 @@
+import NavBar from "./Components/NavBar"
+import SignUp from "./Components/SignUp"
 const App = () => {
-return (
-    <div className="flex items-center justify-center h-screen">
-      <h1 className="text-3xl text-[blue]">Hello, World!</h1>
-    </div>
+  return (
+    <>
+      <NavBar />
+      <SignUp />
+    </>
   )
 }
 

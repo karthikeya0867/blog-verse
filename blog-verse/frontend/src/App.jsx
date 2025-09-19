@@ -1,12 +1,12 @@
-import NavBar from "./Components/NavBar"
-import SignUp from "./Components/SignUp"
+import NavBar from "./Components/NavBar";
+import Home from "./Components/Home";
 const App = () => {
   return (
     <>
       <NavBar />
-      <SignUp />
+      <Home />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

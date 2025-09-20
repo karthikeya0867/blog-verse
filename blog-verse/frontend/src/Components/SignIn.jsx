@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 import { faEye, faEnvelope, faLock , faSignIn} from "@fortawesome/free-solid-svg-icons";
 const SignIn = () => {
   return (
@@ -54,12 +55,12 @@ const SignIn = () => {
            <FontAwesomeIcon icon={faSignIn} /> Sign In
           </button>
           <div className="border-b-1 border-[lightgray] w-[90%] mt-1" />
-          <p className="text-gray-500 font-semibold">
+          <p className="flex gap-2 text-gray-500 font-semibold">
             Don't Have An Account?
-            <span className="cursor-pointer text-purple-500">
+            <Link to='/signup' className="cursor-pointer text-purple-500">
               {" "}
               Create One Here
-            </span>
+            </Link>
           </p>
         </form>
       </div>

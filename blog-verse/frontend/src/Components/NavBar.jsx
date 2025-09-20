@@ -1,37 +1,46 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 const NavBar = () => {
   return (
     <nav className="z-20 flex bg-white justify-evenly h-16 fixed top-0 left-0 right-0 items-center border-[lightgrey] border-b-1">
-      <div className="flex items-center">
-        <label htmlFor="blog-logo">
-          <img
-            src="./blog-logo.png"
-            alt="logo"
-            className="w-15 h-15 rounded-4xl cursor-pointer"
-          />
-        </label>
-        <h1 id="blog-logo" className="text-xl font-bold cursor-pointer">
-          BlogVerse
-        </h1>
-      </div>
+      <Link to="/">
+        <div className="flex items-center">
+          <label htmlFor="blog-logo">
+            <img
+              src="./blog-logo.png"
+              alt="logo"
+              className="w-15 h-15 rounded-4xl cursor-pointer"
+            />
+          </label>
+          <h1 id="blog-logo" className="text-xl font-bold cursor-pointer">
+            BlogVerse
+          </h1>
+        </div>
+      </Link>
 
-      <button className="flex items-center gap-1 text-blue-700 cursor-pointer hover:bg-gray-100 px-6 py-2  rounded-xl">
+      <Link to="/" className="flex items-center gap-1 text-blue-700 cursor-pointer hover:bg-gray-100 px-6 py-2  rounded-xl">
         <FontAwesomeIcon
           icon={faHome}
           htmlFor="home"
           className="text-blue-500"
         />
         <span id="home">Home</span>
-      </button>
+      </Link>
 
-      <div className="flex gap-5">
-        <button className="font-semibold text-gray-700 cursor-pointer">
+      <div className="flex items-center gap-5">
+        <Link
+          to="/signin"
+          className="font-semibold text-gray-700 cursor-pointer"
+        >
           Sign In
-        </button>
-        <button className="bg-blue-600 text-white font-semibold px-4 py-2 rounded-2xl cursor-pointer">
+        </Link>
+        <Link
+          to="/signup"
+          className="bg-blue-600 text-white font-semibold px-4 py-2 rounded-2xl cursor-pointer"
+        >
           Sign Up
-        </button>
+        </Link>
       </div>
     </nav>
   );

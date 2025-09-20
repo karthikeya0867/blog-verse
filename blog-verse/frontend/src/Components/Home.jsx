@@ -135,13 +135,13 @@ function Home() {
       </div>
       <div className="mt-5 flex gap-10 flex-wrap justify-center w-full rounded-lg shadow-lg pb-5">
         {posts.map((post) => (
-          <div className="cursor-pointer w-96 bg-white shadow-lg rounded-lg" key={post.id}>
+          <div className="cursor-pointer w-96 bg-white shadow-lg rounded-lg transform duration-500 ease-in-out transition-transform hover:scale-110" key={post.id}>
             <div className="overflow-hidden relative">
                 <div className="z-10 absolute left-4 top-3 font-semibold text-white text-[12px] px-4 bg-blue-600 rounded-4xl py-2">
                     {post.tag}
                 </div>
               <img
-                className="object-cover rounded-t-lg transform transition-transform duration-500 hover:scale-125 ease-in-out shadow-lg h-52 w-96"
+                className="object-cover rounded-t-lg  transform transition-transform duration-500 hover:scale-125 ease-in-out shadow-lg h-52 w-96"
                 src={post.Image}
                 alt="Writing"
               />

@@ -1,7 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import { faEye, faEnvelope, faLock , faSignIn} from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEnvelope, faEyeSlash ,faLock , faSignIn} from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 const SignIn = () => {
+  const [showPassword , setShowPassword] = useState(false);
+  const handlePassword = () => setShowPassword(prev => !prev);
   return (
     <>
       <div className="flex flex-col justify-center items-center h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-50">
@@ -12,10 +15,10 @@ const SignIn = () => {
           </div>
           <div className="w-[90%] flex flex-col gap-2">
             <p className="text-md text-gray-700 font-semibold">Email Address</p>
-            <div className="relative">
+            <div className="group relative">
               <FontAwesomeIcon
                 icon={faEnvelope}
-                className="absolute left-3 top-4"
+                className="group-focus-within:text-blue-500 absolute left-3 top-4"
               />
               <input
                 type="email"
@@ -27,20 +30,21 @@ const SignIn = () => {
           </div>
           <div className="w-[90%] flex flex-col gap-2">
             <p className="text-md text-gray-700 font-semibold">Password</p>
-            <div className="relative">
+            <div className="group relative">
               <FontAwesomeIcon
                 icon={faLock}
-                className="absolute left-3 top-4"
+                className="group-focus-within:text-blue-500 absolute left-3 top-4"
               />
               <input
-                type="password"
+                type={ showPassword ? "text" : "password"}
                 placeholder="Enter Your Password"
                 className="border-1 border-gray-300 w-full py-3 px-10 rounded-xl focus:outline-none
                       focus:border-purple-500"
               />
               <FontAwesomeIcon
-                icon={faEye}
-                className="absolute right-3 top-4"
+                icon={showPassword ? faEye : faEyeSlash}
+                onClick={handlePassword}
+                className="group-focus-within:text-blue-500 absolute right-3 top-4 cursor-pointer"
               />
             </div>
             <div className="flex mt-4 justify-between">

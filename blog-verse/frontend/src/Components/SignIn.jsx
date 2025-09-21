@@ -8,7 +8,7 @@ const SignIn = () => {
   return (
     <>
       <div className="flex flex-col justify-center items-center h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-50">
-        <form className="flex flex-col mt-10 bg-white gap-7 min-w-1/3 shadow-2xl rounded-2xl items-center px-4 py-8">
+        <form className="flex flex-col mt-10 bg-white gap-7 w-[90%] sm:w-[70%] xl:w-1/3 shadow-2xl rounded-2xl items-center px-4 py-8">
           <div className="flex flex-col items-center gap-3">
             <p className="font-bold text-2xl">Sign In</p>
             <p className="text-gray-600">Access Your Account</p>

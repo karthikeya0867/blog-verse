@@ -31,13 +31,13 @@ const NavBar = () => {
       <div className="flex items-center gap-5">
         <Link
           to="/signin"
-          className="font-semibold text-gray-700 cursor-pointer"
+          className="font-semibold text-xs sm:text-sm text-gray-700 cursor-pointer"
         >
           Sign In
         </Link>
         <Link
           to="/signup"
-          className="bg-blue-600 text-white font-semibold px-4 py-2 rounded-2xl cursor-pointer"
+          className="bg-blue-600 text-white font-semibold text-xs px-3 py-2 sm:text-sm  sm:px-4 sm:py-2 rounded-2xl cursor-pointer"
         >
           Sign Up
         </Link>

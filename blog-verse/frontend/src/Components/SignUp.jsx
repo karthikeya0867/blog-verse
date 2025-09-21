@@ -72,14 +72,14 @@ const SignUp = () => {
   };
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-50">
-      <div className="flex flex-col items-center p-18  gap-5">
-        <h1 className="text-4xl text-blue-600 font-bold">Join BlogVerse</h1>
+      <div className="flex flex-col items-center p-18 mt-10 gap-5">
+        <h1 className="text-4xl text-center text-blue-600 font-bold">Join BlogVerse</h1>
         <p className="text-xl text-gray-500 text-center font-normal ">
-          Create your account and <br /> start your Blogging journey today
+          Create your account & <br /> start your Blogging journey today
         </p>
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col rounded-2xl gap-6 bg-white  min-w-1/3 shadow-2xl  py-7 items-center"
+          className="flex flex-col rounded-2xl gap-6 bg-white w-[120%] sm:w-[70%]  xl:w-1/3 shadow-2xl  py-7 items-center"
         >
           <div className="w-[90%] flex flex-col gap-2">
             <p className="text-md text-gray-700 font-semibold">Full Name</p>
@@ -216,7 +216,7 @@ const SignUp = () => {
             Create Account
           </button>
           <div className="border-b-1 border-[lightgray] w-[90%] mt-1" />
-          <p className="flex gap-2 text-gray-500 font-semibold">
+          <p className="flex flex-col items-center gap-2 text-gray-500 font-semibold">
             Already Have An Account?
             <Link to="/signin" className="cursor-pointer text-purple-500">
               {" "}

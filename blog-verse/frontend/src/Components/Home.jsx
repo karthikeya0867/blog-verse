@@ -118,30 +118,30 @@ function Home() {
 
   return (
     <div className="min-h-screen flex flex-col items-center pt-5 bg-gray-50">
-      <p className="text-4xl font-bold pt-20">Welcome back, Dev Astra</p>
-      <p className="text-lg text-gray-500 mt-4">
+      <p className="text-4xl font-bold text-center pt-20">Welcome back,<br />User</p>
+      <p className="text-lg text-gray-500 mt-4 text-center">
         {" "}
         Discover amazing stories, insights, and ideas from our community of
         writers.
       </p>
       <div className=" flex gap-10 justify-around mt-5 ">
-        <button className="px-10 py-4 flex border-2 border-blue-200 items-center gap-2 shadow-blue-100 cursor-pointer bg-blue-700 hover:bg-blue-800 shadow-md text-white rounded-xl">
+        <button className="sm:px-10 sm:py-4 text-xs sm:text-sm px-2 flex border-2 border-blue-200 items-center gap-2 shadow-blue-100 cursor-pointer bg-blue-700 hover:bg-blue-800 shadow-md text-white rounded-xl">
           <FontAwesomeIcon icon={faPencil} /> Write a New Post
         </button>
-        <button className="px-10 border-2 border-gray-300 shadow-md bg-white py-4 gap-2 flex items-center cursor-pointer  hover:bg-gray-300 text-gray-800 rounded-md">
+        <button className="sm:px-10 text-xs sm:text-sm p-3 border-2 border-gray-300 shadow-md bg-white sm:py-4 gap-2 flex items-center cursor-pointer  hover:bg-gray-300 text-gray-800 rounded-md">
           <FontAwesomeIcon icon={faBookmark} />
           View My Posts
         </button>
       </div>
-      <div className="mt-5 flex gap-10 flex-wrap justify-center w-full rounded-lg shadow-lg pb-5">
+      <div className="mt-10 flex gap-10 flex-wrap justify-center w-full rounded-lg shadow-lg pb-5">
         {posts.map((post) => (
-          <div className="cursor-pointer w-96 bg-white shadow-lg rounded-lg transform duration-500 ease-in-out transition-transform hover:scale-110" key={post.id}>
+          <div className="cursor-pointer w-[90%] sm:w-96 bg-white shadow-lg rounded-lg transform duration-500 ease-in-out transition-transform hover:scale-110" key={post.id}>
             <div className="overflow-hidden relative">
                 <div className="z-10 absolute left-4 top-3 font-semibold text-white text-[12px] px-4 bg-blue-600 rounded-4xl py-2">
                     {post.tag}
                 </div>
               <img
-                className="object-cover rounded-t-lg  transform transition-transform duration-500 hover:scale-125 ease-in-out shadow-lg h-52 w-96"
+                className="object-cover rounded-t-lg w-full transform transition-transform duration-500 hover:scale-125 ease-in-out shadow-lg h-52"
                 src={post.Image}
                 alt="Writing"
               />

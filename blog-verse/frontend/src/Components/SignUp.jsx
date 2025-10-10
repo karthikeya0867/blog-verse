@@ -14,6 +14,9 @@ import { useState } from "react";
 const SignUp = () => {
   const handlePassword = () => setShowPassword((prev) => !prev);
   const handleConfirmPassword = () => setShowConfirmPassword((prev) => !prev);
+  const [isCardOpen,setIsCardOpen] = useState(false);
+  const [isLoading , setIsLoading] = useState(false);
+  const [fullName ,setFullname] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -23,14 +26,18 @@ const SignUp = () => {
     confirmPassword: "",
   });
   const handleChange = (event) => {
-    setErrors({
-      ...errors,
-      [event.target.name] : ""
-    });
+    const {name , value} = event.target;
+    setErrors((prevErrors) => {
+    const newErrors = { ...prevErrors, [name]: "" };
+    if (name === "password") {
+      newErrors.confirmPassword = "";
+    }
+    return newErrors;
+  });
     setSuccess("");
     setFormData({
       ...formData,
-      [event.target.name]: event.target.value,
+      [name]: value,
     });
   };
   const [errors, setErrors] = useState({
@@ -41,6 +48,7 @@ const SignUp = () => {
   });
   const [success, setSuccess] = useState("");
   const handleSubmit = (event) => {
+    setIsLoading(true);
     setSuccess("");
     event.preventDefault();
     let newErrors = {};
@@ -60,20 +68,30 @@ const SignUp = () => {
     }
     if (Object.keys(newErrors).length !== 0) {
       setErrors(newErrors);
+      setIsLoading(false);
     } else {
+      setFullname(formData.fullName);
+      console.log(fullName)
+      console.log(formData)
+      setTimeout( () => {
       setSuccess("Your Account Has Been SuccessFully Created");
+      setIsCardOpen(true);
       setFormData({
         fullName: "",
         email: "",
         password: "",
         confirmPassword: "",
       });
-    }
+      setIsLoading(false);
+    },3000);
+  }
   };
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-50">
-      <div className="flex flex-col items-center p-18 mt-10 gap-5">
-        <h1 className="text-4xl text-center text-blue-600 font-bold">Join BlogVerse</h1>
+      <div className="flex flex-col items-center p-16 gap-5">
+        <h1 className="text-4xl text-center text-blue-600 font-bold">
+          Join BlogVerse
+        </h1>
         <p className="text-xl text-gray-500 text-center font-normal ">
           Create your account & <br /> start your Blogging journey today
         </p>
@@ -99,8 +117,8 @@ const SignUp = () => {
               />
             </div>
             {errors.fullName && (
-              <div className="p-3 gap-2 flex items-center font-semibold justify-center rounded-xl shadow-2xl shadow-red-500 bg-red-400 border-2 w-[90%] border-red-500">
-                <FontAwesomeIcon className="text-2xl" icon={faXmark} />{" "}
+              <div className="  text-red-500 font-bold w-[90%] ">
+                <FontAwesomeIcon className="text-xl" icon={faXmark} />{" "}
                 {errors.fullName}
               </div>
             )}
@@ -123,8 +141,8 @@ const SignUp = () => {
               />
             </div>
             {errors.email && (
-              <div className="p-3 gap-2 flex items-center font-semibold justify-center rounded-xl shadow-2xl shadow-red-500 bg-red-400 border-2 w-[90%] border-red-500">
-                <FontAwesomeIcon className="text-2xl" icon={faXmark} />{" "}
+              <div className="text-red-500 font-bold w-[90%]">
+                <FontAwesomeIcon className="text-xl" icon={faXmark} />{" "}
                 {errors.email}
               </div>
             )}
@@ -151,9 +169,9 @@ const SignUp = () => {
                 onClick={handlePassword}
               />
             </div>
-             {errors.password && (
-              <div className="p-3 gap-2 flex items-center font-semibold justify-center rounded-xl shadow-2xl shadow-red-500 bg-red-400 border-2 w-[90%] border-red-500">
-                <FontAwesomeIcon className="text-2xl" icon={faXmark} />{" "}
+            {errors.password && (
+              <div className="text-red-500 w-[90%] font-bold">
+                <FontAwesomeIcon className="text-xl" icon={faXmark} />{" "}
                 {errors.password}
               </div>
             )}
@@ -182,8 +200,8 @@ const SignUp = () => {
                 onClick={handleConfirmPassword}
               />
             </div>
-             {errors.confirmPassword && (
-              <div className="p-3 gap-2 flex items-center font-semibold justify-center rounded-xl shadow-2xl shadow-red-500 bg-red-400 border-2 w-[90%] border-red-500">
+            {errors.confirmPassword && (
+              <div className="text-red-500 font-bold w-[90%]">
                 <FontAwesomeIcon className="text-2xl" icon={faXmark} />{" "}
                 {errors.confirmPassword}
               </div>
@@ -213,7 +231,7 @@ const SignUp = () => {
             className="flex gap-2 items-center justify-center w-[90%] text-white rounded-3xl bg-purple-500 font-semibold py-4"
           >
             <FontAwesomeIcon icon={faUser} />
-            Create Account
+            {isLoading ? "Creating..." : "Create Account"}
           </button>
           <div className="border-b-1 border-[lightgray] w-[90%] mt-1" />
           <p className="flex flex-col items-center gap-2 text-gray-500 font-semibold">
@@ -230,7 +248,19 @@ const SignUp = () => {
             <FontAwesomeIcon icon={faArrowLeft} /> Back To Home
           </Link>
         </form>
-      </div>
+        {isCardOpen && ( 
+          <div className="fixed h-dvh w-dvw flex items-center justify-center">
+          <div className="absolute h-dvh w-dvw bg-black opacity-50" />
+          <div className="z-20 rounded-xl bg-white border-2 border-gray-300 p-6 flex flex-col gap-3">
+            <p className="text-2xl font-extrabold">Hello {fullName} Welcome To Open Quill</p>
+            <p>Your account has been succesfully created. Login to continue</p> 
+            <div className="flex gap-3 ">
+            <Link to="/signin" className="bg-blue-500 text-white px-5 py-3 rounded-xl font-extralight">Login</Link>
+            <button onClick={() => setIsCardOpen(false)} className="bg-gray-200 text-black px-5 py-3 rounded-xl font-extralight">Close</button>
+            </div>
+          </div>
+        </div>)}
+        </div>
     </div>
   );
 };
